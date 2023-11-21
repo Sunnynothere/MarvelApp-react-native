@@ -1,9 +1,19 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Home = () => {
+
+    // Search input:
+
+    const [searchText, setSearchText] = useState('');
+
+    const handleSearch = (text) => {
+        console.log('Searching for:', text);
+        setSearchText(text);
+      };
+
     return(
         <ScrollView contentContainerStyle={styles.container_scroll}>
             <View style={styles.container}>
@@ -16,8 +26,12 @@ const Home = () => {
                         <Image style={styles.lego_spiderman} source={require('../assets/lego-spiderman.png')} />
                     </SafeAreaView>
 
-                    <View>
+                    <View style={styles.container_section_two}>
                         <Text style={styles.title_two}>Who are you {'\n'}Looking for?</Text>
+                        <TextInput style={styles.search_input}
+                        placeholder='search character...'
+                        value={searchText}
+                        onChangeText={handleSearch} />
                     </View>
             </View>
         </ScrollView>
@@ -68,15 +82,26 @@ const styles = StyleSheet.create({
             { rotate: '20.52deg' },
           ],
     },
-    separator: {
-        height: 20,
+    container_section_two: {
+        paddingLeft: 20,
+        paddingRight: 20,
     },
     title_two: {
-        fontFamily: 'SF Pro Display ',
+        fontFamily: 'SF Pro Display',
         fontSize: 24,
         fontStyle: 'normal',
         fontWeight: '700',
         textAlign: 'left',
         paddingLeft: 16,
-    }
+    },
+    search_input: {
+        margin: 10,
+        padding: 8,
+        backgroundColor: '#EAEAEA',
+        border: '0.50px white solid',
+        borderRadius: 8,
+        fontFamily: 'SF Pro Display',
+        fontSize: 14,
+        color: '#7A7A7A',
+    },
 });
