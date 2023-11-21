@@ -1,18 +1,26 @@
 import * as React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Home = () => {
     return(
-        <View style={styles.container}>
-            <Image blurRadius={100} style={styles.background_color_home} source={require('../assets/home-background-color.png')} />
-            <SafeAreaView style={styles.area_text_home}>
-                <View>
-                    <Text style={styles.home_title}>Discover the {'\n'}Marvel Universe</Text>
-                </View>
-                <Image style={styles.lego_spiderman} source={require('../assets/lego-spiderman.png')} />
-            </SafeAreaView>
-        </View>
+        <ScrollView contentContainerStyle={styles.container_scroll}>
+            <View style={styles.container}>
+                
+                    <Image blurRadius={100} style={styles.background_color_home} source={require('../assets/home-background-color.png')} />
+                    <SafeAreaView style={styles.area_text_home}>
+                        <View>
+                            <Text style={styles.home_title}>Discover the {'\n'}Marvel Universe</Text>
+                        </View>
+                        <Image style={styles.lego_spiderman} source={require('../assets/lego-spiderman.png')} />
+                    </SafeAreaView>
+
+                    <View>
+                        <Text style={styles.title_two}>Who are you {'\n'}Looking for?</Text>
+                    </View>
+            </View>
+        </ScrollView>
     )
 };
 
@@ -20,13 +28,15 @@ export default Home;
 
 const styles = StyleSheet.create({
 
+    container_scroll: {
+        flexGrow: 1,
+        justifyContent: 'flex-end',
+    },
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     home_title: {
-        fontFamily: 'SF Pro Display Normal',
+        fontFamily: 'SF Pro Display ',
         fontSize: 30,
         fontStyle: 'normal',
         fontWeight: '700',
@@ -47,7 +57,7 @@ const styles = StyleSheet.create({
     },
     lego_spiderman: {
         position: 'absolute',
-        left: '20%',
+        left: '25%',
         top: '55%',
         width: 300,
         height: 200,
@@ -58,4 +68,15 @@ const styles = StyleSheet.create({
             { rotate: '20.52deg' },
           ],
     },
+    separator: {
+        height: 20,
+    },
+    title_two: {
+        fontFamily: 'SF Pro Display ',
+        fontSize: 24,
+        fontStyle: 'normal',
+        fontWeight: '700',
+        textAlign: 'left',
+        paddingLeft: 16,
+    }
 });
